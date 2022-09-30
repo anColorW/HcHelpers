@@ -14,9 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Boyki implements Listener {
 
-
-    private static Location placed;
-
+    public static boolean limit = false;
 
     @EventHandler
     public void onPlacePortal(BlockPlaceEvent e){
@@ -35,10 +33,13 @@ public class Boyki implements Listener {
 
         if(p.getItemInHand().getItemMeta().getDisplayName().equals(Utils.chat("&7Boyfarmer"))){
             if(e.getBlockPlaced().getType() == Material.ENDER_PORTAL_FRAME){
-                placed = e.getBlock().getLocation();
 
-                Location block = placed;
+
+                Location block = e.getBlock().getLocation();
                 Location originalLoc = block;
+
+                int blocks = 10;
+                int x = 0;
 
                 p.getInventory().removeItem(boyfarmer);
 
@@ -47,14 +48,19 @@ public class Boyki implements Listener {
                             return;
                         }
 
+                        if(limit){
+                            if(x == blocks){
+                                return;
+                            }
+                            x = x + 1;
+                        }
+
                         p.getWorld().getBlockAt(block).setType(Material.AIR);
                         p.getWorld().getBlockAt(originalLoc).setType(Material.AIR);
                         block.setY(block.getBlockY() - 1);
                     }
 
                     e.setCancelled(true);
-
-
             }
         }
 
