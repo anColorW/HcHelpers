@@ -1,20 +1,15 @@
 package me.color;
 
 import me.color.komendy.Komenda;
-import me.color.listeners.Boyki;
+import me.color.listeners.Autofosa;
 import me.color.listeners.Rzucaki;
 import me.color.utils.Utils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends JavaPlugin {
 
@@ -25,7 +20,7 @@ public class Main extends JavaPlugin {
         System.out.println("test");
         new Komenda(this);
         getServer().getPluginManager().registerEvents(new Rzucaki(), this);
-        getServer().getPluginManager().registerEvents(new Boyki(), this);
+        getServer().getPluginManager().registerEvents(new Autofosa(), this);
         recipe();
     }
 

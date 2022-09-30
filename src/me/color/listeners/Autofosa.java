@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Boyki implements Listener {
+public class Autofosa implements Listener { //AUTOFOSA NIE BOYFARMERY
 
     public static boolean limit = false;
 
@@ -43,24 +43,24 @@ public class Boyki implements Listener {
 
                 p.getInventory().removeItem(boyfarmer);
 
-                    while(block.getBlockY() > 0){
-                        if(p.getWorld().getBlockAt(block).getType() == Material.BEDROCK){
-                            return;
-                        }
-
-                        if(limit){
-                            if(x == blocks){
-                                return;
-                            }
-                            x = x + 1;
-                        }
-
-                        p.getWorld().getBlockAt(block).setType(Material.AIR);
-                        p.getWorld().getBlockAt(originalLoc).setType(Material.AIR);
-                        block.setY(block.getBlockY() - 1);
+                while(block.getBlockY() > 0){
+                    if(p.getWorld().getBlockAt(block).getType() == Material.BEDROCK){
+                        return;
                     }
 
-                    e.setCancelled(true);
+                    if(limit){
+                        if(x == blocks){
+                            return;
+                        }
+                        x = x + 1;
+                    }
+
+                    p.getWorld().getBlockAt(block).setType(Material.AIR);
+                    p.getWorld().getBlockAt(originalLoc).setType(Material.AIR);
+                    block.setY(block.getBlockY() - 1);
+                }
+
+                e.setCancelled(true);
             }
         }
 
