@@ -1,0 +1,6 @@
+name: ColorHcHelpers
+version: 0.1
+main: me.color.Main
+
+commands:
+  rzucak:
