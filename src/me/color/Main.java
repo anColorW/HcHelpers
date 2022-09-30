@@ -1,6 +1,7 @@
 package me.color;
 
 import me.color.komendy.Komenda;
+import me.color.listeners.Boyki;
 import me.color.listeners.Rzucaki;
 import me.color.utils.Utils;
 import org.bukkit.Bukkit;
@@ -24,6 +25,7 @@ public class Main extends JavaPlugin {
         System.out.println("test");
         new Komenda(this);
         getServer().getPluginManager().registerEvents(new Rzucaki(), this);
+        getServer().getPluginManager().registerEvents(new Boyki(), this);
         recipe();
     }
 

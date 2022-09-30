@@ -32,7 +32,14 @@ public class Komenda implements CommandExecutor {
         rzucakmeta.setDisplayName(Utils.chat("&4&kW &r &c&lRzucane &f&lTNT &4&kW"));
         rzucak.setItemMeta(rzucakmeta);
 
-        p.getInventory().addItem(rzucak);
+
+        ItemStack boyfarmer = new ItemStack(Material.ENDER_PORTAL_FRAME);
+        ItemMeta boyfarmermeta = boyfarmer.getItemMeta();
+        boyfarmermeta.setDisplayName(Utils.chat("&7Boyfarmer"));
+        boyfarmer.setItemMeta(boyfarmermeta);
+
+
+        p.getInventory().addItem(boyfarmer);
 
 
 
