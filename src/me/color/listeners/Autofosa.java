@@ -21,10 +21,10 @@ public class Autofosa implements Listener { //AUTOFOSA NIE BOYFARMERY
 
         Player p = e.getPlayer();
 
-        ItemStack boyfarmer = new ItemStack(Material.ENDER_PORTAL_FRAME);
-        ItemMeta boyfarmermeta = boyfarmer.getItemMeta();
-        boyfarmermeta.setDisplayName(Utils.chat("&7Boyfarmer"));
-        boyfarmer.setItemMeta(boyfarmermeta);
+        ItemStack autofosa = new ItemStack(Material.ENDER_PORTAL_FRAME);
+        ItemMeta autofosameta = autofosa.getItemMeta();
+        autofosameta.setDisplayName(Utils.chat("&7Boyfarmer"));
+        autofosa.setItemMeta(autofosameta);
 
         if(p.getItemInHand().getType() == Material.AIR)
             return;
@@ -41,7 +41,7 @@ public class Autofosa implements Listener { //AUTOFOSA NIE BOYFARMERY
                 int blocks = 10;
                 int x = 0;
 
-                p.getInventory().removeItem(boyfarmer);
+                p.getInventory().removeItem(autofosa);
 
                 while(block.getBlockY() > 0){
                     if(p.getWorld().getBlockAt(block).getType() == Material.BEDROCK){

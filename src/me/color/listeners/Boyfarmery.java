@@ -10,16 +10,16 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Sandy implements Listener {
+public class Boyfarmery implements Listener {
 
     @EventHandler
     public void onSandPlace(BlockPlaceEvent e){
         Player p = e.getPlayer();
 
-        ItemStack sandfarmer = new ItemStack(Material.SANDSTONE);
-        ItemMeta sandfarmermeta = sandfarmer.getItemMeta();
-        sandfarmermeta.setDisplayName(Utils.chat("&7Sandfarmer"));
-        sandfarmer.setItemMeta(sandfarmermeta);
+        ItemStack boyfarmer = new ItemStack(Material.OBSIDIAN);
+        ItemMeta boyfarmermeta = boyfarmer.getItemMeta();
+        boyfarmermeta.setDisplayName(Utils.chat("&8Sandfarmer"));
+        boyfarmer.setItemMeta(boyfarmermeta);
 
         if(p.getItemInHand().getType() == Material.AIR)
             return;
@@ -36,15 +36,15 @@ public class Sandy implements Listener {
                 int blocks = 10;
                 int x = 0;
 
-                p.getInventory().removeItem(sandfarmer);
+                p.getInventory().removeItem(boyfarmer);
 
                 while(block.getBlockY() > 0){
                     if(p.getWorld().getBlockAt(block).getType() == Material.BEDROCK){
                         return;
                     }
-                //mozna tu przepisac limit kratek do ktorych dzialaja sandy
+                    //mozna tu przepisac limit kratek do ktorych dzialaja sandy
 
-                    p.getWorld().getBlockAt(block).setType(Material.SAND);
+                    p.getWorld().getBlockAt(block).setType(Material.OBSIDIAN);
 
                     block.setY(block.getBlockY() - 1);
                 }

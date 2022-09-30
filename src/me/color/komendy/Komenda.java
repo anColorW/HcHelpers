@@ -33,13 +33,24 @@ public class Komenda implements CommandExecutor {
         rzucak.setItemMeta(rzucakmeta);
 
 
-        ItemStack boyfarmer = new ItemStack(Material.ENDER_PORTAL_FRAME);
+        ItemStack autofosa = new ItemStack(Material.ENDER_PORTAL_FRAME);
+        ItemMeta autofosameta = autofosa.getItemMeta();
+        autofosameta.setDisplayName(Utils.chat("&7Boyfarmer"));
+        autofosa.setItemMeta(autofosameta);
+
+        ItemStack sandfarmer = new ItemStack(Material.SANDSTONE);
+        ItemMeta sandfarmermeta = sandfarmer.getItemMeta();
+        sandfarmermeta.setDisplayName(Utils.chat("&7Sandfarmer"));
+        sandfarmer.setItemMeta(sandfarmermeta);
+
+        ItemStack boyfarmer = new ItemStack(Material.OBSIDIAN);
         ItemMeta boyfarmermeta = boyfarmer.getItemMeta();
-        boyfarmermeta.setDisplayName(Utils.chat("&7Boyfarmer"));
+        boyfarmermeta.setDisplayName(Utils.chat("&8Sandfarmer"));
         boyfarmer.setItemMeta(boyfarmermeta);
 
-
         p.getInventory().addItem(boyfarmer);
+        p.getInventory().addItem(sandfarmer);
+        p.getInventory().addItem(rzucak);
 
 
 

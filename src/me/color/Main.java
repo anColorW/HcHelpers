@@ -3,6 +3,7 @@ package me.color;
 import me.color.komendy.Komenda;
 import me.color.listeners.Autofosa;
 import me.color.listeners.Rzucaki;
+import me.color.listeners.Sandy;
 import me.color.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -21,6 +22,7 @@ public class Main extends JavaPlugin {
         new Komenda(this);
         getServer().getPluginManager().registerEvents(new Rzucaki(), this);
         getServer().getPluginManager().registerEvents(new Autofosa(), this);
+        getServer().getPluginManager().registerEvents(new Sandy(), this);
         recipe();
     }
 
