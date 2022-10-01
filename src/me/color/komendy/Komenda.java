@@ -33,12 +33,6 @@ public class Komenda implements CommandExecutor {
         rzucakmeta.setDisplayName(Utils.chat("&4&kW &r &c&lRzucane &f&lTNT &4&kW"));
         rzucak.setItemMeta(rzucakmeta);
 
-
-        ItemStack autofosa = new ItemStack(Material.ENDER_PORTAL_FRAME);
-        ItemMeta autofosameta = autofosa.getItemMeta();
-        autofosameta.setDisplayName(Utils.chat("&7Boyfarmer"));
-        autofosa.setItemMeta(autofosameta);
-
         ItemStack sandfarmer = new ItemStack(Material.SANDSTONE);
         ItemMeta sandfarmermeta = sandfarmer.getItemMeta();
         sandfarmermeta.setDisplayName(Utils.chat("&7Sandfarmer"));
@@ -46,7 +40,7 @@ public class Komenda implements CommandExecutor {
 
         ItemStack boyfarmer = new ItemStack(Material.OBSIDIAN);
         ItemMeta boyfarmermeta = boyfarmer.getItemMeta();
-        boyfarmermeta.setDisplayName(Utils.chat("&8Sandfarmer"));
+        boyfarmermeta.setDisplayName(Utils.chat("&8Boyfarmer"));
         boyfarmer.setItemMeta(boyfarmermeta);
 
 
@@ -60,6 +54,12 @@ public class Komenda implements CommandExecutor {
         stoniarkatyp2.setDisplayName(Utils.chat("&eStoniarka"));
         stoniarkatyp1.setItemMeta(stoniarkatyp2);
 
+        ItemStack autofosa = new ItemStack(Material.ENDER_PORTAL_FRAME);
+        ItemMeta autofosameta = autofosa.getItemMeta();
+        autofosameta.setDisplayName(Utils.chat("&7Autofosa"));
+        autofosa.setItemMeta(autofosameta);
+
+
         //wiem ze dalo sie szybciej robiac public static
 
         p.getInventory().addItem(boyfarmer);
@@ -67,6 +67,8 @@ public class Komenda implements CommandExecutor {
         p.getInventory().addItem(rzucak);
         p.getInventory().addItem(stoniarka);
         p.getInventory().addItem(stoniarkatyp1);
+        p.getInventory().addItem(autofosa);
+
 
 
 

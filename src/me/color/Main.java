@@ -1,10 +1,7 @@
 package me.color;
 
 import me.color.komendy.Komenda;
-import me.color.listeners.Autofosa;
-import me.color.listeners.Rzucaki;
-import me.color.listeners.Sandy;
-import me.color.listeners.Stoniarki;
+import me.color.listeners.*;
 import me.color.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -31,6 +28,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Autofosa(), this);
         getServer().getPluginManager().registerEvents(new Sandy(), this);
         getServer().getPluginManager().registerEvents(new Stoniarki(), this);
+        getServer().getPluginManager().registerEvents(new Boyfarmery(), this);
         instance = this;
         recipe();
     }

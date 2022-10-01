@@ -23,7 +23,7 @@ public class Autofosa implements Listener { //AUTOFOSA NIE BOYFARMERY
 
         ItemStack autofosa = new ItemStack(Material.ENDER_PORTAL_FRAME);
         ItemMeta autofosameta = autofosa.getItemMeta();
-        autofosameta.setDisplayName(Utils.chat("&7Boyfarmer"));
+        autofosameta.setDisplayName(Utils.chat("&7Autofosa"));
         autofosa.setItemMeta(autofosameta);
 
         if(p.getItemInHand().getType() == Material.AIR)
@@ -48,7 +48,7 @@ public class Autofosa implements Listener { //AUTOFOSA NIE BOYFARMERY
                         return;
                     }
 
-                    if(limit){
+                    if(limit){ //limit kratek
                         if(x == blocks){
                             return;
                         }

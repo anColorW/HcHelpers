@@ -18,7 +18,7 @@ public class Boyfarmery implements Listener {
 
         ItemStack boyfarmer = new ItemStack(Material.OBSIDIAN);
         ItemMeta boyfarmermeta = boyfarmer.getItemMeta();
-        boyfarmermeta.setDisplayName(Utils.chat("&8Sandfarmer"));
+        boyfarmermeta.setDisplayName(Utils.chat("&8Boyfarmer"));
         boyfarmer.setItemMeta(boyfarmermeta);
 
         if(p.getItemInHand().getType() == Material.AIR)
@@ -26,8 +26,8 @@ public class Boyfarmery implements Listener {
         if(p.getItemInHand().getItemMeta().getDisplayName() == null)
             return;
 
-        if(p.getItemInHand().getItemMeta().getDisplayName().equals(Utils.chat("&7Sandfarmer"))){
-            if(e.getBlockPlaced().getType() == Material.SANDSTONE){
+        if(p.getItemInHand().getItemMeta().getDisplayName().equals(Utils.chat("&8Boyfarmer"))){
+            if(e.getBlockPlaced().getType() == Material.OBSIDIAN){
 
 
                 Location block = e.getBlock().getLocation();
