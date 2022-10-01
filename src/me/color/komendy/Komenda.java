@@ -1,5 +1,6 @@
 package me.color.komendy;
 
+import me.color.listeners.Stoniarki;
 import me.color.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -51,7 +52,6 @@ public class Komenda implements CommandExecutor {
         p.getInventory().addItem(boyfarmer);
         p.getInventory().addItem(sandfarmer);
         p.getInventory().addItem(rzucak);
-
 
 
 

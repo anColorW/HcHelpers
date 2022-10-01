@@ -4,6 +4,7 @@ import me.color.komendy.Komenda;
 import me.color.listeners.Autofosa;
 import me.color.listeners.Rzucaki;
 import me.color.listeners.Sandy;
+import me.color.listeners.Stoniarki;
 import me.color.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -16,6 +17,12 @@ public class Main extends JavaPlugin {
 
     public static ItemStack rzucak;
 
+
+    static Main instance;
+
+
+
+
     @Override
     public void onEnable() {
         System.out.println("test");
@@ -23,9 +30,14 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Rzucaki(), this);
         getServer().getPluginManager().registerEvents(new Autofosa(), this);
         getServer().getPluginManager().registerEvents(new Sandy(), this);
+        getServer().getPluginManager().registerEvents(new Stoniarki(), this);
+        instance = this;
         recipe();
     }
 
+    public static Main getInstance() {
+        return instance;
+    }
     private void recipe()
     {
          rzucak = new ItemStack(Material.TNT);
