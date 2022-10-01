@@ -49,10 +49,24 @@ public class Komenda implements CommandExecutor {
         boyfarmermeta.setDisplayName(Utils.chat("&8Sandfarmer"));
         boyfarmer.setItemMeta(boyfarmermeta);
 
+
+        ItemStack stoniarka = new ItemStack(Material.SPONGE);
+        ItemMeta stoniarkameta = stoniarka.getItemMeta();
+        stoniarkameta.setDisplayName(Utils.chat("&eStoniarka"));
+        stoniarka.setItemMeta(stoniarkameta);
+
+        ItemStack stoniarkatyp1 = new ItemStack(Material.ENDER_STONE);
+        ItemMeta stoniarkatyp2 = stoniarkatyp1.getItemMeta();
+        stoniarkatyp2.setDisplayName(Utils.chat("&eStoniarka"));
+        stoniarkatyp1.setItemMeta(stoniarkatyp2);
+
+        //wiem ze dalo sie szybciej robiac public static
+
         p.getInventory().addItem(boyfarmer);
         p.getInventory().addItem(sandfarmer);
         p.getInventory().addItem(rzucak);
-
+        p.getInventory().addItem(stoniarka);
+        p.getInventory().addItem(stoniarkatyp1);
 
 
 

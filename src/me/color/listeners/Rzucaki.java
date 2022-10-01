@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Rzucaki implements Listener {
 
     @EventHandler
-    public static void onInterract(PlayerInteractEvent e) {
+    public static void onInterract(PlayerInteractEvent e) { //dodac tnt dziala od 22-6
         Player p = e.getPlayer();
 
         ItemStack rzucak = new ItemStack(Material.TNT);
