@@ -1,5 +1,8 @@
 package me.color.komendy;
 
+import me.color.gui.GuiGeneral;
+import me.color.listeners.Autofosa;
+import me.color.listeners.ItemStacks;
 import me.color.listeners.Stoniarki;
 import me.color.utils.Utils;
 import org.bukkit.Material;
@@ -27,47 +30,20 @@ public class Komenda implements CommandExecutor {
 
         Player p = (Player) sender;
 
-
-        ItemStack rzucak = new ItemStack(Material.TNT);
-        ItemMeta rzucakmeta = rzucak.getItemMeta();
-        rzucakmeta.setDisplayName(Utils.chat("&4&kW &r &c&lRzucane &f&lTNT &4&kW"));
-        rzucak.setItemMeta(rzucakmeta);
-
-        ItemStack sandfarmer = new ItemStack(Material.SANDSTONE);
-        ItemMeta sandfarmermeta = sandfarmer.getItemMeta();
-        sandfarmermeta.setDisplayName(Utils.chat("&7Sandfarmer"));
-        sandfarmer.setItemMeta(sandfarmermeta);
-
-        ItemStack boyfarmer = new ItemStack(Material.OBSIDIAN);
-        ItemMeta boyfarmermeta = boyfarmer.getItemMeta();
-        boyfarmermeta.setDisplayName(Utils.chat("&8Boyfarmer"));
-        boyfarmer.setItemMeta(boyfarmermeta);
+        p.getInventory().addItem(ItemStacks.getBoyki());
+        p.getInventory().addItem(ItemStacks.getSandy());
+        p.getInventory().addItem(ItemStacks.getRzucak());
+        p.getInventory().addItem(ItemStacks.getStoniarki(1));
+        p.getInventory().addItem(ItemStacks.getStoniarki(2));
+        p.getInventory().addItem(ItemStacks.getFosa());
 
 
-        ItemStack stoniarka = new ItemStack(Material.SPONGE);
-        ItemMeta stoniarkameta = stoniarka.getItemMeta();
-        stoniarkameta.setDisplayName(Utils.chat("&eStoniarka"));
-        stoniarka.setItemMeta(stoniarkameta);
+        p.openInventory(GuiGeneral.GuiMain(p));
 
-        ItemStack stoniarkatyp1 = new ItemStack(Material.ENDER_STONE);
-        ItemMeta stoniarkatyp2 = stoniarkatyp1.getItemMeta();
-        stoniarkatyp2.setDisplayName(Utils.chat("&eStoniarka"));
-        stoniarkatyp1.setItemMeta(stoniarkatyp2);
+        for(int i = 0; i < Stoniarki.StoniarkaLokacja.size(); i++){
+            System.out.println(Stoniarki.StoniarkaLokacja.get(i));
+        }
 
-        ItemStack autofosa = new ItemStack(Material.ENDER_PORTAL_FRAME);
-        ItemMeta autofosameta = autofosa.getItemMeta();
-        autofosameta.setDisplayName(Utils.chat("&7Autofosa"));
-        autofosa.setItemMeta(autofosameta);
-
-
-        //wiem ze dalo sie szybciej robiac public static
-
-        p.getInventory().addItem(boyfarmer);
-        p.getInventory().addItem(sandfarmer);
-        p.getInventory().addItem(rzucak);
-        p.getInventory().addItem(stoniarka);
-        p.getInventory().addItem(stoniarkatyp1);
-        p.getInventory().addItem(autofosa);
 
 
 

@@ -20,11 +20,6 @@ public class Rzucaki implements Listener {
     public static void onInterract(PlayerInteractEvent e) { //dodac tnt dziala od 22-6
         Player p = e.getPlayer();
 
-        ItemStack rzucak = new ItemStack(Material.TNT);
-        ItemMeta rzucakmeta = rzucak.getItemMeta();
-        rzucakmeta.setDisplayName(Utils.chat("&4&kW &r &c&lRzucane &f&lTNT &4&kW"));
-        rzucak.setItemMeta(rzucakmeta);
-
         if(p.getItemInHand().getType() == Material.AIR)
             return;
         if(p.getItemInHand().getItemMeta().getDisplayName() == null)
@@ -41,7 +36,7 @@ public class Rzucaki implements Listener {
                 p.getWorld().spawnEntity(block, EntityType.PRIMED_TNT);
 
 
-                p.getInventory().removeItem(rzucak);
+                p.getInventory().removeItem(ItemStacks.getRzucak());
                 e.setCancelled(true);
             } else {
                 return;

@@ -16,10 +16,7 @@ public class Sandy implements Listener {
     public void onSandPlace(BlockPlaceEvent e){
         Player p = e.getPlayer();
 
-        ItemStack sandfarmer = new ItemStack(Material.SANDSTONE);
-        ItemMeta sandfarmermeta = sandfarmer.getItemMeta();
-        sandfarmermeta.setDisplayName(Utils.chat("&7Sandfarmer"));
-        sandfarmer.setItemMeta(sandfarmermeta);
+
 
         if(p.getItemInHand().getType() == Material.AIR)
             return;
@@ -36,7 +33,7 @@ public class Sandy implements Listener {
                 int blocks = 10;
                 int x = 0;
 
-                p.getInventory().removeItem(sandfarmer);
+                p.getInventory().removeItem(ItemStacks.getSandy());
 
                 while(block.getBlockY() > 0){
                     if(p.getWorld().getBlockAt(block).getType() == Material.BEDROCK){

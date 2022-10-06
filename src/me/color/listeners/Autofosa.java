@@ -1,5 +1,6 @@
 package me.color.listeners;
 
+import me.color.Main;
 import me.color.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,22 +17,22 @@ public class Autofosa implements Listener { //AUTOFOSA NIE BOYFARMERY
 
     public static boolean limit = false;
 
+
+
+
     @EventHandler
     public void onPlacePortal(BlockPlaceEvent e){
 
         Player p = e.getPlayer();
 
-        ItemStack autofosa = new ItemStack(Material.ENDER_PORTAL_FRAME);
-        ItemMeta autofosameta = autofosa.getItemMeta();
-        autofosameta.setDisplayName(Utils.chat("&7Autofosa"));
-        autofosa.setItemMeta(autofosameta);
+
 
         if(p.getItemInHand().getType() == Material.AIR)
             return;
         if(p.getItemInHand().getItemMeta().getDisplayName() == null)
             return;
 
-        if(p.getItemInHand().getItemMeta().getDisplayName().equals(Utils.chat("&7Boyfarmer"))){
+        if(p.getItemInHand().getItemMeta().getDisplayName().equals(Utils.chat("&7Autofosa"))){
             if(e.getBlockPlaced().getType() == Material.ENDER_PORTAL_FRAME){
 
 
@@ -41,7 +42,7 @@ public class Autofosa implements Listener { //AUTOFOSA NIE BOYFARMERY
                 int blocks = 10;
                 int x = 0;
 
-                p.getInventory().removeItem(autofosa);
+                p.getInventory().removeItem(ItemStacks.getFosa());
 
                 while(block.getBlockY() > 0){
                     if(p.getWorld().getBlockAt(block).getType() == Material.BEDROCK){

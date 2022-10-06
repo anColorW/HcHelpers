@@ -44,10 +44,7 @@ public class Stoniarki implements Listener {
     @EventHandler
     public void enderPlace(BlockPlaceEvent e) {
         Player p = e.getPlayer();
-        ItemStack stoniarkatyp1 = new ItemStack(Material.ENDER_STONE);
-        ItemMeta stoniarkatyp2 = stoniarkatyp1.getItemMeta();
-        stoniarkatyp2.setDisplayName(Utils.chat("&eStoniarka"));
-        stoniarkatyp1.setItemMeta(stoniarkatyp2);
+
 
         if(p.getItemInHand().getType() == Material.AIR)
             return;
@@ -69,11 +66,6 @@ public class Stoniarki implements Listener {
     public void spongePlace(BlockPlaceEvent e) {
         Player p = e.getPlayer();
 
-        ItemStack stoniarka = new ItemStack(Material.SPONGE);
-        ItemMeta stoniarkameta = stoniarka.getItemMeta();
-        stoniarkameta.setDisplayName(Utils.chat("&eStoniarka"));
-        stoniarka.setItemMeta(stoniarkameta);
-
 
         if(p.getItemInHand().getType() == Material.AIR)
             return;
@@ -82,7 +74,7 @@ public class Stoniarki implements Listener {
 
         if(p.getItemInHand().getItemMeta().getDisplayName().equals(Utils.chat("&eStoniarka"))){
             if(e.getBlockPlaced().getType() == Material.SPONGE){
-                p.getInventory().removeItem(stoniarka);
+                p.getInventory().removeItem(ItemStacks.getStoniarki(2));
                 e.getBlockPlaced().setType(Material.STONE);
                 StoniarkaLokacja.add(e.getBlockPlaced().getLocation());
             }
@@ -99,18 +91,13 @@ public class Stoniarki implements Listener {
         Player p = e.getPlayer();
         Location loc = e.getBlock().getState().getLocation();
 
-        ItemStack stoniarka = new ItemStack(Material.SPONGE);
-        ItemMeta stoniarkameta = stoniarka.getItemMeta();
-        stoniarkameta.setDisplayName(Utils.chat("&eStoniarka"));
-        stoniarka.setItemMeta(stoniarkameta);
-
         if (e.getBlock().getType() == Material.STONE) {
             if(StoniarkaLokacja.contains(e.getBlock().getLocation())){
                 new BukkitRunnable() {
                     @Override
                     public void run() {
                         if(p.getItemInHand().getType().equals(Material.GOLD_PICKAXE)){
-                            p.getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(stoniarka));
+                            p.getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(ItemStacks.getStoniarki(2)));
                             StoniarkaLokacja.remove(e.getBlock().getLocation());
                             cancel();
                             return;

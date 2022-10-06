@@ -16,10 +16,7 @@ public class Boyfarmery implements Listener {
     public void onSandPlace(BlockPlaceEvent e){
         Player p = e.getPlayer();
 
-        ItemStack boyfarmer = new ItemStack(Material.OBSIDIAN);
-        ItemMeta boyfarmermeta = boyfarmer.getItemMeta();
-        boyfarmermeta.setDisplayName(Utils.chat("&8Boyfarmer"));
-        boyfarmer.setItemMeta(boyfarmermeta);
+
 
         if(p.getItemInHand().getType() == Material.AIR)
             return;
@@ -36,7 +33,7 @@ public class Boyfarmery implements Listener {
                 int blocks = 10;
                 int x = 0;
 
-                p.getInventory().removeItem(boyfarmer);
+                p.getInventory().removeItem(ItemStacks.getBoyki());
 
                 while(block.getBlockY() > 0){
                     if(p.getWorld().getBlockAt(block).getType() == Material.BEDROCK){
