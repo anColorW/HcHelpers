@@ -1,5 +1,6 @@
 package me.color.gui;
 
+import me.color.listeners.Autofosa;
 import me.color.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -44,19 +45,6 @@ public class GuiGeneral {
                 Utils.createItemByte(inv, 160, 15, 1, a, "&8&m--।--", "&8» &cPuste Pole!", "&8» &cWybierz inna pozycja!");
             }
 
-            /*
-
-
-
-             */
-
-
-
-
-
-            int math = 64 * 9 - Utils.CountItemInInventory(p, Material.TNT);
-
-
 
             Utils.createItem(inv, 46, 1 , 1, Utils.chat("&8&m&l----------------------"), true,
                     "             &f&lCrafting         " ,
@@ -89,54 +77,7 @@ public class GuiGeneral {
             );
 
 
-
-//7,9
-
-            /*
-
-            Utils.createItem(inv, 353, 1 , 7, "\uD83E\uDC6F", false,
-                    "&8&m&l----------------------" ,
-                    "          &f&lSzybkosc 2      " ,
-                    "        &8&l    5 minut       " ,
-                    "",
-                    "        &f&l     Koszt",
-                    //&8&m-----------------------
-                    "&c&l "+ Resources + " blokow szmaragdowych",
-                    amount >= Resources ? "  &a&l  Mozesz kupic efekt! " : "  &4&l  Brakuje Ci " + (Resources - amount) + "blokow! ",
-                    "&8&m&l----------------------"
-            );
-
-
-            Utils.createItem(inv, 317, 1 , 13, "\uD83E\uDC6F", false,
-                    "&8&m&l----------------------" ,
-                    "      &f&lWysokie skakanie" ,
-                    "        &8&l    5 minut       " ,
-                    "",
-                    "        &f&l     Koszt",
-                    //&8&m-----------------------
-                    "&c&l "+ Resources + " blokow szmaragdowych",
-                    amount >= Resources ? "  &a&l  Mozesz kupic efekt! " : "  &4&l  Brakuje Ci " + (Resources - amount) + "blokow! ",
-                    "&8&m&l----------------------"
-            );
-
-
-            Utils.createItem(inv, 267, 1 , 15, "\uD83E\uDC6F", false,
-                    "&8&m&l----------------------" ,
-                    "          &f&lStrength 1      " ,
-                    "        &8&l    5 minut       " ,
-                    "",
-                    "        &f&l     Koszt",
-                    //&8&m-----------------------
-                    "&c&l "+ Resources + " blokow szmaragdowych",
-                    amount >= Resources ? "  &a&l  Mozesz kupic efekt! " : "  &4&l  Brakuje Ci " + (Resources - amount) + "blokow! ",
-                    "&8&m&l----------------------"
-            );
-
-
             //Utils.createItem(inv, 266, 1 , 12, "&d&lZloto", Main.Config.golddrop, "&r&fSzansa: &d&l" + Main.Config.GoldChance + "%", "&fDrop: " + gold);
- */
-
-
 
             toReturn.setContents(inv.getContents());
             return toReturn;
@@ -144,20 +85,17 @@ public class GuiGeneral {
         }
 
         public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
-
-
-
             if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("       &4&kW &r &c&lRzucane &f&lTNT &4&kW"))) {
-              int amount =  Utils.CountItemInInventory(p, Material.TNT);
+           /*   int amount =  Utils.CountItemInInventory(p, Material.TNT);
               int left = (64 * 9) - amount;
               int staki = left / 64;
               int reszta = left % 64;
               String message = staki == 0 ? "Brakuje ci " + reszta + " tnt!" : "Brakuje ci " + staki + " stakow, oraz " + reszta + " TNT";
-              p.sendMessage(message);
-
+              p.sendMessage(message);*/
+              p.openInventory(RzucakGui.RzucakGui(p));
             }
             if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("             &7&lAutofosa         "))) {
-
+              p.openInventory(AutofosaGui.FosaGui(p));
             }
             if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat( "            &7&lSandfarmer       "))) {
 

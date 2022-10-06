@@ -81,11 +81,11 @@ public class Utils {
         return item;
     }
 
-    public static int CountItemInInventory(Player p, Material block){
+    public static int CountItemInInventory(Player p, ItemStack block){
         int amount = 0;
         for (int i2 = 0; i2 < 36; i2++) {
             ItemStack slot = p.getInventory().getItem(i2);
-            if (slot == null || !slot.isSimilar(new ItemStack(block)))
+            if (slot == null || !slot.isSimilar(block))
                 continue;
             amount += slot.getAmount();
         }

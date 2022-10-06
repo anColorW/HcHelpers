@@ -2,6 +2,7 @@ package me.color.listeners;
 
 import me.color.Main;
 import me.color.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,13 +11,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 
 public class Stoniarki implements Listener {
 
+    public static Main plugin;
+
+    public Stoniarki(Main plugin) {
+        Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
 
     public static ArrayList<Location> StoniarkaLokacja = new ArrayList<>();
 
@@ -30,12 +35,13 @@ public class Stoniarki implements Listener {
             if (p.getWorld().getBlockAt(loc.getBlockX(), loc.getBlockY() - 1, loc.getBlockZ()).getType() == Material.ENDER_STONE) {
 
                 new BukkitRunnable() {
+
                     @Override
                     public void run() {
-                        e.getBlock().setType(Material.STONE);    //Sponge lub EnderStone pod tym co bedzie dawalo sygnal temu zeby stone sie respil (zloty kilof przerywa runnable)
-                    }
+                        e.getBlock().setType(Material.STONE);
 
-                }.runTaskLater(Main.getInstance(), 20);
+                    }
+                }.runTaskTimer(Main.getInstance(), 20, 20);
 
             }
         }
@@ -65,8 +71,6 @@ public class Stoniarki implements Listener {
     @EventHandler
     public void spongePlace(BlockPlaceEvent e) {
         Player p = e.getPlayer();
-
-
         if(p.getItemInHand().getType() == Material.AIR)
             return;
         if(p.getItemInHand().getItemMeta().getDisplayName() == null)
@@ -87,7 +91,7 @@ public class Stoniarki implements Listener {
 
 
     @EventHandler
-    public void stoniarkatyp2(BlockBreakEvent e) {
+    public void Stoniarka(BlockBreakEvent e) {
         Player p = e.getPlayer();
         Location loc = e.getBlock().getState().getLocation();
 

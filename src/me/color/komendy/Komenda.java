@@ -1,21 +1,13 @@
 package me.color.komendy;
 
 import me.color.gui.GuiGeneral;
-import me.color.listeners.Autofosa;
 import me.color.listeners.ItemStacks;
 import me.color.listeners.Stoniarki;
-import me.color.utils.Utils;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import me.color.Main;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.Arrays;
 
 public class Komenda implements CommandExecutor {
     public static Main plugin;

@@ -1,6 +1,7 @@
 package me.color.gui;
 
 import me.color.Main;
+import me.color.listeners.Autofosa;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,23 +20,22 @@ public class Listeners implements Listener {
      */
     @EventHandler
     public void onClick(InventoryClickEvent e) {
-
         String title = e.getInventory().getTitle();
-        if (title.equals(GuiGeneral.inventory_name)) {
+        if (title.equals(GuiGeneral.inventory_name) || (title.equals(RzucakGui.inventory_name)) || title.equals(AutofosaGui.inventory_name)) {
             e.setCancelled(true);
             if(e.getCurrentItem() == null) {
                 return;
             }
 
-        } if (title.equals(GuiGeneral.inventory_name)) {
+        }
+        if((title.equals(RzucakGui.inventory_name))){
+            RzucakGui.clicked((Player) e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
+        }
+        if (title.equals(GuiGeneral.inventory_name)) {
             GuiGeneral.clicked((Player) e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
         }
-    }
-
-    @EventHandler
-    public void onPlayerMoveEvent(PlayerMoveEvent e)
-    {
-        Player p = (Player) e.getPlayer();
-
+        if (title.equals(AutofosaGui.inventory_name)) {
+            AutofosaGui.clicked((Player) e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
+        }
     }
 }

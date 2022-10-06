@@ -1,7 +1,9 @@
 package me.color;
 
+import me.color.gui.AutofosaGui;
 import me.color.gui.GuiGeneral;
 import me.color.gui.Listeners;
+import me.color.gui.RzucakGui;
 import me.color.komendy.Komenda;
 import me.color.listeners.*;
 import me.color.utils.Utils;
@@ -26,12 +28,13 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         System.out.println("test");
         new Komenda(this);
-        new GuiGeneral(this);
+        AutofosaGui.initialize();
+        RzucakGui.initialize();
         GuiGeneral.initialize();
         getServer().getPluginManager().registerEvents(new Rzucaki(), this);
         getServer().getPluginManager().registerEvents(new Autofosa(), this);
         getServer().getPluginManager().registerEvents(new Sandy(), this);
-        getServer().getPluginManager().registerEvents(new Stoniarki(), this);
+        new Stoniarki( this);
         getServer().getPluginManager().registerEvents(new Boyfarmery(), this);
         getServer().getPluginManager().registerEvents(new Listeners(), this);
 
