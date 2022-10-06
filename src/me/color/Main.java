@@ -1,9 +1,6 @@
 package me.color;
 
-import me.color.gui.AutofosaGui;
-import me.color.gui.GuiGeneral;
-import me.color.gui.Listeners;
-import me.color.gui.RzucakGui;
+import me.color.gui.*;
 import me.color.komendy.Komenda;
 import me.color.listeners.*;
 import me.color.utils.Utils;
@@ -13,6 +10,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.List;
 
 public class Main extends JavaPlugin {
 
@@ -28,18 +27,8 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         System.out.println("test");
         new Komenda(this);
-        AutofosaGui.initialize();
-        RzucakGui.initialize();
-        GuiGeneral.initialize();
-        getServer().getPluginManager().registerEvents(new Rzucaki(), this);
-        getServer().getPluginManager().registerEvents(new Autofosa(), this);
-        getServer().getPluginManager().registerEvents(new Sandy(), this);
-        new Stoniarki( this);
-        getServer().getPluginManager().registerEvents(new Boyfarmery(), this);
-        getServer().getPluginManager().registerEvents(new Listeners(), this);
-
-
-
+        init();
+        events();
         instance = this;
         recipe();
     }
@@ -47,6 +36,25 @@ public class Main extends JavaPlugin {
     public static Main getInstance() {
         return instance;
     }
+
+    public void init(){
+        BoykiGui.initialize();
+        RzucakGui.initialize();
+        GuiGeneral.initialize();
+        AfosaGui.initialize();
+        SandyGui.initialize();
+        StoniarkiGUI.initialize();
+    }
+
+    public void events(){
+        new Rzucaki(this);
+        new Autofosa(this);
+        new Sandy( this);
+        new Stoniarki( this);
+        new Boyfarmery( this);
+        new Listeners( this);
+    }
+
     private void recipe()
     {
          rzucak = new ItemStack(Material.TNT);

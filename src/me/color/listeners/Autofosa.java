@@ -2,6 +2,7 @@ package me.color.listeners;
 
 import me.color.Main;
 import me.color.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -17,6 +18,11 @@ public class Autofosa implements Listener { //AUTOFOSA NIE BOYFARMERY
 
     public static boolean limit = false;
 
+    public static Main plugin;
+
+    public Autofosa(Main plugin) {
+        Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
 
 
 

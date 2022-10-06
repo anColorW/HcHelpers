@@ -92,19 +92,24 @@ public class GuiGeneral {
               int reszta = left % 64;
               String message = staki == 0 ? "Brakuje ci " + reszta + " tnt!" : "Brakuje ci " + staki + " stakow, oraz " + reszta + " TNT";
               p.sendMessage(message);*/
+                p.closeInventory();
               p.openInventory(RzucakGui.RzucakGui(p));
             }
             if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("             &7&lAutofosa         "))) {
-              p.openInventory(AutofosaGui.FosaGui(p));
+                p.closeInventory();
+                p.openInventory(AfosaGui.FosaGui(p));
             }
             if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat( "            &7&lSandfarmer       "))) {
-
+                p.closeInventory();
+                p.openInventory(SandyGui.SandGui(p));
             }
             if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("            &7&lBoyfarmer        "))) {
-
+                p.closeInventory();
+                p.openInventory(BoykiGui.BoykiGui(p));
             }
             if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("            &7&lStoniarki        "))) {
-
+                p.closeInventory();
+                p.openInventory(StoniarkiGUI.Sgui(p));
             }
 
         }

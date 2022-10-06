@@ -1,6 +1,8 @@
 package me.color.listeners;
 
+import me.color.Main;
 import me.color.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,6 +13,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Sandy implements Listener {
+
+    public static Main plugin;
+
+    public Sandy(Main plugin) {
+        Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
+
 
     @EventHandler
     public void onSandPlace(BlockPlaceEvent e){

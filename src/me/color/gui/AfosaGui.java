@@ -9,11 +9,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class RzucakGui {
+public class AfosaGui {
 
     public static Main plugin;
 
-    public RzucakGui(Main pl) {
+    public AfosaGui(Main pl) {
         plugin = pl;
     }
 
@@ -22,13 +22,13 @@ public class RzucakGui {
     public static int inv_rows = 6*9;
 
     public static void initialize() {
-        inventory_name = Utils.chat("&8&lRzucaneTNT...");
+        inventory_name = Utils.chat("&8&lAutoFosa...");
 
         inv = Bukkit.createInventory(null, inv_rows);
     }
 
 
-    public static Inventory RzucakGui(Player p) {
+    public static Inventory FosaGui(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
 
 
@@ -38,15 +38,20 @@ public class RzucakGui {
 
         for (int b = 1; b <= inv_rows; b++) {
             switch (b){
-                case 11: case 12: case 13: case 20: case 21: case 22: case 29: case 30: case 31:
-                    Utils.createItemByte(inv, 46, 15, 64, b, "&7", "&8» &7Przedmiot wymagany do stworzenia RzucanegoTNT!");
+                case 11: case 12: case 13: case 20: case 22: case 29: case 30: case 31:
+                    Utils.createItemByte(inv, 133, 15, 1, b, "&7", "&8» &7Przedmiot wymagany do stworzenia Autofosy!");
+                    break;
+                case 21:
+                    Utils.createItemByte(inv, 278, 0, 1, b, "&7", "&8» &7Przedmiot wymagany do stworzenia Autofosy!");
             }
         }
 
-        int amount =  Utils.CountItemInInventory(p, new ItemStack(Material.TNT));
-        String message = ((64 * 9) - amount) > 0 ? "&8» &cBrakuje Ci TnT do stworzenia przedmiotu!" : "&8» &aMozesz stworzyc przedmiot!";
+        int amount =  Utils.CountItemInInventory(p,new ItemStack(Material.EMERALD_BLOCK));
+        int amount2 =  Utils.CountItemInInventory(p, new ItemStack(Material.DIAMOND_PICKAXE));
+        String message = amount >= 8 && amount2 >= 1 ?  "&8» &aMozesz stworzyc przedmiot!"  : "&8» &cBrakuje Ci przedmiotow do stworzenia przedmiotu!";
 
-        Utils.createItem(inv, 46, 1, 25, "       &4&kW &r &c&lRzucane &f&lTNT &4&kW", true,
+
+        Utils.createItem(inv, 120, 1, 25, "             &7Autofosa        ", true,
                 "&8» &7Kliknij aby stworzyc przedmiot. ",
                 message);
 
@@ -63,29 +68,30 @@ public class RzucakGui {
     }
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
-
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("   &4&l » &cPowrot do Menu &4&l«"))){
             p.openInventory(GuiGeneral.GuiMain(p));
         }
 
         if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("&a Przejdz na nastepna strone."))) {
-            p.openInventory(AfosaGui.FosaGui(p));
+            p.openInventory(SandyGui.SandGui(p));
         }
 
         if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("&c Przejdz na poprzednia strone."))) {
-            p.openInventory(StoniarkiGUI.Sgui(p));
+            p.openInventory(RzucakGui.RzucakGui(p));
         }
 
 
-        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("       &4&kW &r &c&lRzucane &f&lTNT &4&kW"))){
-            if(Utils.CountItemInInventory(p, new ItemStack(Material.TNT)) == 64 * 9){
-                p.getInventory().addItem(ItemStacks.getRzucak());
-                p.getInventory().removeItem(new ItemStack(Material.TNT, 64 * 9));
+
+        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("             &7Autofosa        "))){
+            if(Utils.CountItemInInventory(p, new ItemStack(Material.EMERALD_BLOCK)) >= 8 && Utils.CountItemInInventory(p, new ItemStack(Material.DIAMOND_PICKAXE)) >= 1){
+                p.getInventory().addItem(ItemStacks.getFosa());
+                p.getInventory().removeItem(new ItemStack(Material.EMERALD_BLOCK, 8));
+                p.getInventory().removeItem(new ItemStack(Material.DIAMOND_PICKAXE));
                 p.sendMessage(Utils.chat("&8» &aPomyslnie stworzono przedmiot!"));
                 p.closeInventory();
             } else{
                 p.closeInventory();
-                p.sendMessage(Utils.chat("&8» &cBrakuje Ci TnT do stworzenia przedmiotu!"));
+                p.sendMessage(Utils.chat("&8» &cBrakuje Ci przedmiotow do stworzenia!"));
             }
         }
 

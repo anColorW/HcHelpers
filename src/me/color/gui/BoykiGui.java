@@ -9,11 +9,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class RzucakGui {
+public class BoykiGui { //Boyki lol
 
     public static Main plugin;
 
-    public RzucakGui(Main pl) {
+    public BoykiGui(Main pl) {
         plugin = pl;
     }
 
@@ -22,13 +22,13 @@ public class RzucakGui {
     public static int inv_rows = 6*9;
 
     public static void initialize() {
-        inventory_name = Utils.chat("&8&lRzucaneTNT...");
+        inventory_name = Utils.chat("&8&lSandfarmer...");
 
         inv = Bukkit.createInventory(null, inv_rows);
     }
 
 
-    public static Inventory RzucakGui(Player p) {
+    public static Inventory BoykiGui(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
 
 
@@ -38,15 +38,20 @@ public class RzucakGui {
 
         for (int b = 1; b <= inv_rows; b++) {
             switch (b){
-                case 11: case 12: case 13: case 20: case 21: case 22: case 29: case 30: case 31:
-                    Utils.createItemByte(inv, 46, 15, 64, b, "&7", "&8» &7Przedmiot wymagany do stworzenia RzucanegoTNT!");
+                case 11: case 12: case 13: case 20: case 22: case 29: case 30: case 31:
+                    Utils.createItemByte(inv, 49, 15, 1, b, "&7", "&8» &7Przedmiot wymagany do stworzenia BoyFarmerow!");
+                    break;
+                case 21:
+                    Utils.createItemByte(inv, 322, 1, 1, b, "&7", "&8» &7Przedmiot wymagany do stworzenia BoyFarmerow!");
             }
         }
 
-        int amount =  Utils.CountItemInInventory(p, new ItemStack(Material.TNT));
-        String message = ((64 * 9) - amount) > 0 ? "&8» &cBrakuje Ci TnT do stworzenia przedmiotu!" : "&8» &aMozesz stworzyc przedmiot!";
+        int amount =  Utils.CountItemInInventory(p,new ItemStack(Material.OBSIDIAN));
+        int amount2 =  Utils.CountItemInInventory(p, new ItemStack(Material.GOLDEN_APPLE, 1, (short)1));
+        String message = amount >= 8 && amount2 >= 1 ?  "&8» &aMozesz stworzyc przedmiot!"  : "&8» &cBrakuje Ci przedmiotow do stworzenia przedmiotu!";
 
-        Utils.createItem(inv, 46, 1, 25, "       &4&kW &r &c&lRzucane &f&lTNT &4&kW", true,
+
+        Utils.createItem(inv, 49, 1, 25, "            &7&lBoyfarmer        ", true,
                 "&8» &7Kliknij aby stworzyc przedmiot. ",
                 message);
 
@@ -63,29 +68,28 @@ public class RzucakGui {
     }
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
-
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("   &4&l » &cPowrot do Menu &4&l«"))){
             p.openInventory(GuiGeneral.GuiMain(p));
         }
 
         if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("&a Przejdz na nastepna strone."))) {
-            p.openInventory(AfosaGui.FosaGui(p));
-        }
-
-        if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("&c Przejdz na poprzednia strone."))) {
             p.openInventory(StoniarkiGUI.Sgui(p));
         }
 
+        if (clicked.getItemMeta().getLore().get(1).equalsIgnoreCase(Utils.chat("&c Przejdz na poprzednia strone."))) {
+            p.openInventory(SandyGui.SandGui(p));
+        }
 
-        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("       &4&kW &r &c&lRzucane &f&lTNT &4&kW"))){
-            if(Utils.CountItemInInventory(p, new ItemStack(Material.TNT)) == 64 * 9){
-                p.getInventory().addItem(ItemStacks.getRzucak());
-                p.getInventory().removeItem(new ItemStack(Material.TNT, 64 * 9));
+        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("            &7&lBoyfarmer        "))){
+            if(Utils.CountItemInInventory(p, new ItemStack(Material.OBSIDIAN)) >= 8 && Utils.CountItemInInventory(p, new ItemStack(Material.GOLDEN_APPLE, 1, (short)1)) >= 1){
+                p.getInventory().addItem(ItemStacks.getBoyki());
+                p.getInventory().removeItem(new ItemStack(Material.OBSIDIAN, 8));
+                p.getInventory().removeItem(new ItemStack(Material.GOLDEN_APPLE, 1, (short)1));
                 p.sendMessage(Utils.chat("&8» &aPomyslnie stworzono przedmiot!"));
                 p.closeInventory();
             } else{
                 p.closeInventory();
-                p.sendMessage(Utils.chat("&8» &cBrakuje Ci TnT do stworzenia przedmiotu!"));
+                p.sendMessage(Utils.chat("&8» &cBrakuje Ci przedmiotow do stworzenia!"));
             }
         }
 

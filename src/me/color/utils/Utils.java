@@ -1,5 +1,6 @@
 package me.color.utils;
 
+import com.avaje.ebean.validation.NotNull;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagList;
 import org.bukkit.ChatColor;
@@ -61,10 +62,14 @@ public class Utils {
         return CraftItemStack.asCraftMirror(nmsStack);
     }
 
-    @SuppressWarnings("deprecation")
+    @NotNull
     public static ItemStack createItemByte(Inventory inv, int materialId, int byteId,  int amount, int invSlot, String displayName, String... loreString) {
 
         ItemStack item;
+
+
+
+
         List<String> lore = new ArrayList<String>();
 
         item = new ItemStack(materialId, amount, (short) byteId);

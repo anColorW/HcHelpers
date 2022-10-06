@@ -5,16 +5,46 @@ import me.color.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Rzucaki implements Listener {
+
+    public static Main plugin;
+
+    public static final long HOUR = 3600*1000;
+
+    public Rzucaki(Main plugin) {
+        Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
+
+    @EventHandler
+    public static void onPlace(BlockPlaceEvent e){
+        Calendar calendar = GregorianCalendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        Player p = e.getPlayer();
+
+        if(e.getBlock().getType() == Material.TNT){
+
+            if(hour >= 21){
+                p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny 22:00 do 6:00"));
+                e.setCancelled(true);
+            } else{
+                if(hour >= 0 && hour <= 6){
+                    p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny 22:00 do 6:00"));
+                    e.setCancelled(true);
+                }
+            }
+        }
+
+    }
+
 
     @EventHandler
     public static void onInterract(PlayerInteractEvent e) { //dodac tnt dziala od 22-6
@@ -28,11 +58,26 @@ public class Rzucaki implements Listener {
 
         if(e.getAction().equals(e.getAction().RIGHT_CLICK_BLOCK)){
 
+
             Location block = e.getClickedBlock().getLocation();
             block.setY(block.getY() + 1);
 
 
             if(p.getItemInHand().getItemMeta().getDisplayName().equals(Utils.chat("&4&kW &r &c&lRzucane &f&lTNT &4&kW"))){
+
+                Calendar calendar = GregorianCalendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+                if(hour >= 21){
+                    p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny 22:00 do 6:00"));
+                    return;
+                } else{
+                    if(hour >= 0 && hour <= 6){
+                        p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny 22:00 do 6:00"));
+                        return;
+                    }
+                }
+
                 p.getWorld().spawnEntity(block, EntityType.PRIMED_TNT);
 
 
