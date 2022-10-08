@@ -18,7 +18,6 @@ public class Rzucaki implements Listener {
 
     public static Main plugin;
 
-    public static final long HOUR = 3600*1000;
 
     public Rzucaki(Main plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
@@ -31,23 +30,35 @@ public class Rzucaki implements Listener {
         Player p = e.getPlayer();
 
         if(e.getBlock().getType() == Material.TNT){
+            if(Main.getInstance().getConfig().getBoolean("TNT.TIME")){
+                int x =  Main.getInstance().getConfig().getInt("TNT.OD_GODZ");
+                int y = Main.getInstance().getConfig().getInt("TNT.DO_GODZ");
 
-            if(hour >= 21){
-                p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny 22:00 do 6:00"));
-                e.setCancelled(true);
-            } else{
-                if(hour >= 0 && hour <= 6){
-                    p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny 22:00 do 6:00"));
-                    e.setCancelled(true);
+                if(y > x){ //
+                    if(hour >= x && hour < y){
+                        p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny " + x +":00 do "+ y +":00"));
+                        e.setCancelled(true);
+                        return;
+                    }
+                }
+                if(x > y){
+                    if(hour >= x){
+                        p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny " + x +":00 do "+ y +":00"));
+                        e.setCancelled(true);
+                    } else{
+                        if (hour >= 0 && hour < y) {
+                            p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny " + x +":00 do "+ y +":00"));
+                            e.setCancelled(true);
+                        }
+                    }
                 }
             }
         }
 
     }
 
-
     @EventHandler
-    public static void onInterract(PlayerInteractEvent e) { //dodac tnt dziala od 22-6
+    public static void onInterract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
         if(p.getItemInHand().getType() == Material.AIR)
@@ -67,17 +78,25 @@ public class Rzucaki implements Listener {
 
                 Calendar calendar = GregorianCalendar.getInstance();
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                if(Main.getInstance().getConfig().getBoolean("TNT.TIME")){
+                    int x =  Main.getInstance().getConfig().getInt("TNT.OD_GODZ");
+                    int y = Main.getInstance().getConfig().getInt("TNT.DO_GODZ");
 
-                if(hour >= 21){
-                    p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny 22:00 do 6:00"));
-                    return;
-                } else{
-                    if(hour >= 0 && hour <= 6){
-                        p.sendMessage(Utils.chat("&7&l » &cTNT jest wylaczone od godziny 22:00 do 6:00"));
-                        return;
+                    if(y > x){ //
+                        if(hour >= x && hour < y){
+                            return;
+                        }
+                    }
+                    if(x > y){
+                        if(hour >= x){
+                            return;
+                        } else{
+                            if (hour >= 0 && hour < y) {
+                                return;
+                            }
+                        }
                     }
                 }
-
                 p.getWorld().spawnEntity(block, EntityType.PRIMED_TNT);
 
 

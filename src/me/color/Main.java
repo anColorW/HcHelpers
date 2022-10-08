@@ -2,16 +2,12 @@ package me.color;
 
 import me.color.gui.*;
 import me.color.komendy.Komenda;
+import me.color.komendy.TNTTime;
 import me.color.listeners.*;
-import me.color.utils.Utils;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.List;
 
 public class Main extends JavaPlugin {
 
@@ -20,18 +16,26 @@ public class Main extends JavaPlugin {
 
     static Main instance;
 
-
-
+    public static FileConfiguration cfg;
 
     @Override
-    public void onEnable() {
-        System.out.println("test");
+    public void onEnable() { //dodac config
         new Komenda(this);
+        new TNTTime(this);
         init();
         events();
         instance = this;
-        recipe();
+        reloadConfig();
+
     }
+
+    public void setDefault() {
+        cfg.addDefault("TNT.TIME", Boolean.valueOf(false));
+        cfg.addDefault("TNT.OD_GODZ", Integer.valueOf(16));
+        cfg.addDefault("TNT.DO_GODZ", Integer.valueOf(16));
+        cfg.options().copyDefaults(false);
+    }
+
 
     public static Main getInstance() {
         return instance;
@@ -55,22 +59,7 @@ public class Main extends JavaPlugin {
         new Listeners( this);
     }
 
-    private void recipe()
-    {
-         rzucak = new ItemStack(Material.TNT);
-        ItemMeta rzucakmeta = rzucak.getItemMeta();
-        rzucakmeta.setDisplayName(Utils.chat("&4&kW &r &c&lRzucane &f&lTNT &4&kW"));
-        rzucak.setItemMeta(rzucakmeta);
 
-
-        ItemStack ilosc = new ItemStack(Material.TNT);
-
-        ShapelessRecipe rzucanetnt = new ShapelessRecipe(rzucak);
-        rzucanetnt.addIngredient(9, Material.TNT);
-        //jebac te craftingi
-
-        Bukkit.getServer().addRecipe(rzucanetnt);
-    }
 
 
 }
